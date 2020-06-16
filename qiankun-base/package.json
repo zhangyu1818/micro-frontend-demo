@@ -16,6 +16,6 @@
     "qiankun": "^2.0.14"
   },
   "scripts": {
-    "dev": "npx webpack-dev-server"
+    "start": "npx webpack-dev-server"
   }
 }
