@@ -1,6 +1,7 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
 import logo from "./logo.svg";
+import { emit } from "./index";
 import "./App.css";
 
 function App() {
@@ -30,8 +31,20 @@ const Main = () => {
       <Link to="/page1">page 1</Link>
       <br />
       <Link to="/page2">page 2</Link>
+      <br />
+      <Link to={`/page3/${Math.random()}`}>page 3</Link>
       <App />
     </div>
+  );
+};
+
+const Page3 = () => {
+  const { id } = useParams();
+  return (
+    <>
+      <div>create-react-app page 3</div>
+      <div>id: {id}</div>
+    </>
   );
 };
 
@@ -47,6 +60,15 @@ export default () => {
       </Route>
       <Route path="/page2">
         <div>create-react-app page 2</div>
+        <input
+          type="text"
+          onChange={({ currentTarget }) => {
+            emit.set({ string: currentTarget.value });
+          }}
+        />
+      </Route>
+      <Route path="/page3/:id">
+        <Page3 />
       </Route>
     </BrowserRouter>
   );

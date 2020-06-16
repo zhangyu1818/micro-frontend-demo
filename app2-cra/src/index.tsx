@@ -5,6 +5,10 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+export let emit: any = {
+  set: () => {},
+};
+
 const render = () => {
   ReactDOM.render(<App />, document.getElementById("root-cra"));
 };
@@ -26,6 +30,13 @@ export async function bootstrap() {
  */
 export async function mount(props: unknown) {
   console.log("app2 create-react-app mount", props);
+  // @ts-ignore
+  props.onGlobalStateChange((state, prev) => {
+    // state: 变更后的状态; prev 变更前的状态
+    console.log("app2 global state change", state, prev);
+  });
+  // @ts-ignore
+  emit.set = props.setGlobalState;
   render();
 }
 /**

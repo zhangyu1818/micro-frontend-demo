@@ -2,8 +2,12 @@ import React, { useEffect } from 'react';
 import { Link, useRootExports } from 'umi';
 import styles from './index.less';
 
+function noop() {
+  return function() {};
+}
+
 export default () => {
-  const { bindOnChange, setData } = useRootExports();
+  const { bindOnChange = noop, setData = noop } = useRootExports() ?? {};
   useEffect(() => {
     const unBind = bindOnChange((data: any) => {
       console.log('root exports data change:', data);
