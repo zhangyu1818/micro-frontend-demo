@@ -33,7 +33,7 @@ yarn run start      乘4
   - /app1/page1
   - /app1/page2
 - app2-cra localhost:8000/app2
-  - /app3/page1
+  - /app2/page1
   - /app2/page2
   - /app2/page3/:id
 
